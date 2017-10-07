@@ -10,6 +10,27 @@ import UIKit
 import SceneKit
 import ARKit
 
+/*
+ TODO:
+ 0) Change the eueler scale for the pudge model so that it faces you all the time
+ 1) Create UI on bottom bar with multiple models to pick from, placing that selected model on the screen on click
+   a) Download multiple models from https://free3d.com/3d-models/all/1/dae
+ 2) Make a logo for the app, rename app as well
+ 3) Rewrite algorithm so that we clear object if we click on it.
+ 4) Drag and drop objects capabilities.
+ 5) *** Ability to detect depth of field using camera ***
+ 6) Ability to press and rotate using two fingers
+ 7) Clear all capabilities (Clear all models on the view)
+    a) Lock/Unlock functionality (Lock objects that cannot be cleared)
+       i) Change model (?)
+ 8) Menu UI
+    a) Take a screenshot
+    b) Account settings
+    c) Version #
+ 9) Inventorized objects so that we can reuse objects for other clients (IKEA JENNYLUND chair, etc...)
+ 10) Measuring tape side functionality to be able to measure room
+ */
+
 
 class ARViewController: UIViewController {
     // MARK: - IBOutlet
@@ -50,7 +71,7 @@ class ARViewController: UIViewController {
     
     private var planes: Set<SCNNode> = []
     private lazy var earthNode: SCNNode = {
-        let scene = SCNScene(named: "art.scnassets/earth.scn")
+        let scene = SCNScene(named: "art.scnassets/pudge/pudge.dae")
         let wrapper = SCNNode()
         scene?.rootNode.childNodes.forEach { wrapper.addChildNode($0) }
     
@@ -133,6 +154,7 @@ class ARViewController: UIViewController {
         
     }
 
+    // Can be used to resize object but does not make sense for this project.
     @IBAction func pinch(_ recognizer: UIPinchGestureRecognizer) {
 
     }
